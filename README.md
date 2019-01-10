@@ -3,6 +3,7 @@ Automatically generate pymetrics test report
 
 # Usage
 Please login with pymetrics account and download the report (html) manually.
+(Note: When saving the html file from the browser, please set the format as "Webpage, Complete")
 ```
 usage: parser.py [-h] [-f file_name] [-t threshold] [-v show_title]
 
