@@ -4,12 +4,13 @@ Automatically generate pymetrics test report
 # Usage
 Please login with pymetrics account and download the report (html) manually.
 ```
-usage: parser.py [-h] [-f file_name] [-t threshold]
+usage: parser.py [-h] [-f file_name] [-t threshold] [-v show_title]
 
 optional arguments:
-  -h, --help    show this help message and exit
-  -f file_name  the html file you want to parse
-  -t threshold  the threshold to decide your identities (percentage, default 75)
+  -h, --help     show this help message and exit
+  -f file_name   the html file you want to parse
+  -t threshold   the threshold to decide your identities (percentage, default 75)
+  -v show_title  if you do not want to show the title on each item, set it as zero (default 1)
 ```
 # Example
 ```

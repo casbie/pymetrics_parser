@@ -65,12 +65,23 @@ class MyHTMLParser(HTMLParser):
             self.item = dict()
 
 
-def process_result(result, threshold=75.0):
+def process_result(result, threshold=75.0, show_title=0):
+    count = 0
     for item in result:
         if item['score'] > threshold:
-            print('[{}] {} ({}%)'.format(item['title'], item['right_msg'], round(item['score'], 2)))
+            count += 1
+            if show_title:
+                print('[{}] {} ({}%)'.format(item['title'], item['right_msg'], round(item['score'], 2)))
+            else:
+                print('{} ({}%)'.format(item['right_msg'], round(item['score'], 2)))
         elif item['score'] < (100-threshold):
-            print('[{}] {} ({}%)'.format(item['title'], item['left_msg'], round(item['score'], 2)))
+            count += 1
+            if show_title:
+                print('[{}] {} ({}%)'.format(item['title'], item['left_msg'], round(item['score'], 2)))
+            else:
+                print('{} ({}%)'.format(item['left_msg'], round(item['score'], 2)))
+    if count == 0:
+        print('No result is filtered. Please decrease the threshold.')
 
 if __name__ == '__main__':
     # parse your arguments
@@ -79,10 +90,14 @@ if __name__ == '__main__':
                     help='the html file you want to parse')
     arg_parser.add_argument('-t', metavar='threshold', type=float, default=75.0,
                     help='the threshold to decide your identities (percentage, default 75)')
+    arg_parser.add_argument('-v', metavar='show_title', type=int, default=1,
+                    help='if you do not want to show the title on each item, set it as zero (default 1)')
+    
     args = arg_parser.parse_args()
     
     file_name = args.f
     threshold = args.t
+    show_title = args.v
 
     # get the input file
     f = open(file_name)
@@ -94,5 +109,5 @@ if __name__ == '__main__':
 
     # filter the result by threshold
     result = parser.get_result()
-    process_result(result, threshold)
+    process_result(result, threshold, show_title)
     
