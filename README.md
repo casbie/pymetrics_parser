@@ -2,7 +2,7 @@
 Automatically generate pymetrics test report
 
 # Usage
-Please login with pymetrics account and download the report (html) manually.
+Please login with pymetrics account and download the report (html) manually. For the 3 categories (coginitive, social, emotional) in the report, please download separately.  
 (Note: When saving the html file from the browser, please set the format as "Webpage, Complete")
 ```
 usage: parser.py [-h] [-f file_name] [-t threshold] [-v show_title]
@@ -35,4 +35,11 @@ python parser.py -f pymetrics.html -t 80
 3.5.1
 
 # Issue
-3 categories (cognitive, social, emotional) should be processed separately.
+3 categories (cognitive, social, emotional) should be processed separately.  
+If you want to print the result in the same file, try
+```
+python parser.py -f social.html >> results.txt
+python parser.py -f cogonitive.html >> results.txt
+python parser.py -f emotional.html >> results.txt
+```
+(Thanks Sauyee)
